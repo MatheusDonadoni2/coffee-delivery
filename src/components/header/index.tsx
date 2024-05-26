@@ -1,34 +1,39 @@
-import { MapPin, ShoppingCart } from 'phosphor-react';
 import logoSVG from '../../assets/Logo.svg'
-import { CartButton, Container, ContainerButtons, LocationButton, Logo } from "./styles";
+import { Container, ContainerButtons, Logo } from "./styles";
+import { IconButton } from '../IconButton';
+import { MapPin, ShoppingCart } from 'phosphor-react';
 import { useTheme } from 'styled-components';
 
 export function Header() {
-    const theme = useTheme()
+    const { colors } = useTheme()
 
     return (
         <Container>
             <Logo src={logoSVG} />
             <ContainerButtons>
-                <LocationButton>
-                    <MapPin
-                        weight='fill'
-                        color={theme.colors.brand.purple}
-                        size={22}
+                <IconButton.root
+                    backgroundColor={colors.brand['purple-light']}
+                >
+                    <IconButton.icon
+                        icon={() => <MapPin
+                            weight='fill' size={22}
+                            color={colors.brand['purple-dark']} />}
                     />
-                    <p style={{
-                        color: theme.colors.brand['purple-dark'],
-                    }}>Muriaé, MG</p>
-                </LocationButton>
 
-                <CartButton>
-                    <ShoppingCart
-                        weight='fill'
-                        color={theme.colors.brand['yellow-dark']}
-                        size={22}
+                    <IconButton.label text='Muriaé, MG' />
+                </IconButton.root>
+
+
+                <IconButton.root
+                    backgroundColor={colors.brand['yellow-light']}
+                >
+                    <IconButton.icon
+                        icon={() => <ShoppingCart
+                            weight='fill' size={22}
+                            color={colors.brand['yellow-dark']} />}
                     />
-                </CartButton>
-            </ContainerButtons>
+                </IconButton.root>
+            </ContainerButtons >
         </Container >
     )
 }
